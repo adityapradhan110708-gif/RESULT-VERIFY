@@ -59,7 +59,21 @@ const ch='ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789';
 let cur='';
 function gen(){let s='';for(let i=0;i<6;i++)s+=ch[Math.floor(Math.random()*ch.length)];return s;}
 function refresh(){cur=gen();document.getElementById('cap').textContent=cur;document.getElementById('inp').value='';document.getElementById('err').style.display='none';}
-function verify(){const v=document.getElementById('inp').value.trim();if(v===cur){document.getElementById('captcha-card').style.display='none';const w=document.getElementById('pdf-wrap');w.style.display='block';const p=new URLSearchParams(location.search).get('pdf')||'about:blank';document.getElementById('pdf-frame').src=p;}else{document.getElementById('err').style.display='block';refresh();}}
+function verify(){
+  const v=document.getElementById('inp').value.trim();
+  if(v===cur){
+    document.getElementById('captcha-card').style.display='none';
+    const w=document.getElementById('pdf-wrap');
+    w.style.display='block';
+    const p=new URLSearchParams(location.search).get('pdf');
+    const fileId='1PxrMWIxmT3uaiyK--MvJ416v9680dvVT';
+    const src=p||'https://drive.google.com/viewerng/viewer?embedded=true&url=https://drive.google.com/uc?id='+fileId;
+    document.getElementById('pdf-frame').src=src;
+  }else{
+    document.getElementById('err').style.display='block';
+    refresh();
+  }
+}
 refresh();
 </script>
 </body>
